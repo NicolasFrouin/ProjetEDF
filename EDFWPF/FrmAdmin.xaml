@@ -1,0 +1,80 @@
+﻿<Window x:Class="EDFWPF.FrmAdmin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EDFWPF"
+        mc:Ignorable="d"
+        Title="FrmAdmin" Height="600" Width="1200" Loaded="Window_Loaded">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="DicoEDF.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Style="{StaticResource styleTextBlock}" Text="Gestion EDF Admin" Grid.ColumnSpan="8" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"/>
+        <TextBlock Style="{StaticResource styleTextBlock}" HorizontalAlignment="Left" VerticalAlignment="Center" Text="Liste des contrôleurs" Grid.Row="1" Grid.ColumnSpan="2" FontSize="20"/>
+        <TextBlock Style="{StaticResource styleTextBlock}" HorizontalAlignment="Left" VerticalAlignment="Center" Text="Liste des clients" Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" FontSize="20"/>
+        <ListView Name="lstControleurs" Grid.Row="2" Grid.RowSpan="3" Grid.ColumnSpan="4" SelectionChanged="lstControleurs_SelectionChanged">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem" BasedOn="{StaticResource styleListView}"/>
+            </ListView.ItemContainerStyle>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding id}" Width="50"/>
+                    <GridViewColumn Header="Nom" DisplayMemberBinding="{Binding nom}" Width="200"/>
+                    <GridViewColumn Header="Prenom" DisplayMemberBinding="{Binding prenom}" Width="200"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListView Name="lstClients" Grid.Row="2" Grid.RowSpan="3" Grid.ColumnSpan="4" Grid.Column="4">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem" BasedOn="{StaticResource styleListView}"/>
+            </ListView.ItemContainerStyle>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding IdClient}" Width="25"/>
+                    <GridViewColumn Header="Nom" DisplayMemberBinding="{Binding NomClient}" Width="125"/>
+                    <GridViewColumn Header="Prenom" DisplayMemberBinding="{Binding PrenomClient}" Width="125"/>
+                    <GridViewColumn Header="Ancien relevé" DisplayMemberBinding="{Binding AncienReleveClient}" Width="100"/>
+                    <GridViewColumn Header="Dernier relevé" DisplayMemberBinding="{Binding DernierReleveClient}" Width="100"/>
+                    <GridViewColumn Header="Consommation" DisplayMemberBinding="{Binding ConsomationCient}" Width="100"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <TextBlock Style="{StaticResource styleTextBlock}" Text="Nom du contrôleur" Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+        <TextBlock Style="{StaticResource styleTextBlock}" Text="Nom du client" Grid.Column="4" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+        <TextBlock Style="{StaticResource styleTextBlock}" Text="Prénom du contrôleur" Grid.Column="0" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+        <TextBlock Style="{StaticResource styleTextBlock}" Text="Prénom du client" Grid.Column="4" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+        <TextBox Name="txtNomControleur" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center"/>
+        <TextBox Name="txtNomClient" Grid.Column="5" Grid.Row="5" VerticalAlignment="Center"/>
+        <TextBox Name="txtPrenomControleur" Grid.Column="1" Grid.Row="6" VerticalAlignment="Center"/>
+        <TextBox Name="txtPrenomClient" Grid.Column="5" Grid.Row="6" VerticalAlignment="Center"/>
+        <Button Name="btnInsertionControleur" Click="btnInsertionControleur_Click" Grid.Column="0" Grid.Row="7" Content="Insérer un contrôleur" Grid.ColumnSpan="2" Height="50"/>
+        <Button Name="btnInsertionClient" Click="btnInsertionClient_Click" Grid.Column="4" Grid.Row="7" Content="Insérer un client" Grid.ColumnSpan="2" Height="50"/>
+    </Grid>
+</Window>
